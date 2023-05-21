@@ -5,21 +5,18 @@ require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL
 console.log(MONGO_URL);
 // Connect MongoDB at default port 27017.
-const dbconnection = async() =>{
- try{
-    mongoose.connect(MONGO_URL, (err) => {
-        if (!err) {
-            console.log('MongoDB Connection Succeeded.')
-        } else {
-            console.log('Error in DB connection: ')
-        }
-    });
- }
-    catch (error) {
-        return res.status(500).json({ message: error.message });
-      }
- 
- 
-}
+const dbconnection = async () => {
+    try {
+      await mongoose.connect(MONGO_URL , {
+        useNewUrlParser: true,
+        
+      });
+  
+      console.log('MongoDB connected!');
+    } catch (error) {
+      console.error('MongoDB connection failed:', error.message);
+      process.exit(1);
+    }
+  };
 
 module.exports = dbconnection;
