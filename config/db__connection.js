@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL
-
+console.log(MONGO_URL);
 // Connect MongoDB at default port 27017.
 const dbconnection = async() =>{
  try{
